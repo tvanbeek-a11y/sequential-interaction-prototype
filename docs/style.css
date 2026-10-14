@@ -1,0 +1,75 @@
+/* A night scene lit only by the flame: the palette stays dark in light and dark viewers alike. */
+:root {
+  --bg: #080808;
+  --ink: #e6e6e6;
+  --dim: #9a9a9a;
+  --line: rgba(255, 255, 255, .24);
+  --fill: rgba(20, 20, 20, .66);
+  color-scheme: dark;
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  background: var(--bg);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --bg: #080808; --ink: #e6e6e6; --dim: #9a9a9a; }
+}
+:root[data-theme="dark"] { --bg: #080808; --ink: #e6e6e6; --dim: #9a9a9a; }
+
+html { height: 100%; scroll-padding-top: env(safe-area-inset-top, 0px); }
+body {
+  margin: 0; height: 100%; position: relative; overflow: hidden;
+  background: var(--bg); color: var(--ink);
+  font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  -webkit-user-select: none; user-select: none; -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent; overscroll-behavior: none; touch-action: none;
+}
+canvas {
+  position: absolute; inset: 0; width: 100%; height: 100%; display: block;
+  touch-action: none; cursor: grab;
+}
+canvas:active { cursor: grabbing; }
+canvas:focus-visible { outline: 2px solid var(--dim); outline-offset: -6px; }
+
+.hint {
+  position: absolute; left: 50%; top: 22px; transform: translateX(-50%);
+  width: calc(100% - 128px); max-width: 360px; margin: 0; text-align: center;
+  font-size: 17px; font-style: italic; line-height: 1.35; letter-spacing: .01em; color: var(--ink);
+  text-shadow: 0 1px 6px rgba(0, 0, 0, .8);
+  opacity: 0; transition: opacity .5s ease; pointer-events: none;
+}
+.hint.on { opacity: 1; }
+.hint.sr {
+  width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden;
+  clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap;
+}
+
+.snd {
+  position: absolute; right: 8px; top: 8px; width: 44px; height: 44px;
+  display: grid; place-items: center; padding: 0; border: 0; border-radius: 22px;
+  background: transparent; color: var(--dim); cursor: pointer; z-index: 2;
+}
+.snd svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.snd .off { display: none; }
+.snd[aria-pressed="false"] .on { display: none; }
+.snd[aria-pressed="false"] .off { display: block; }
+.snd:focus-visible, .pill:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+
+.end {
+  position: absolute; inset: 0; display: grid; place-items: center;
+  background: radial-gradient(ellipse at center, rgba(0, 0, 0, .3), rgba(0, 0, 0, .8));
+  opacity: 0; visibility: hidden; transition: opacity .7s ease, visibility 0s .7s;
+}
+.end.show { opacity: 1; visibility: visible; transition: opacity .7s ease; }
+.card { text-align: center; padding: 0 24px; }
+.card h1 { margin: 0 0 26px; font-size: 38px; font-weight: 500; font-style: italic; letter-spacing: -.005em; }
+.pill {
+  font: inherit; font-size: 17px; min-height: 48px; padding: 0 30px; border-radius: 999px;
+  border: 1px solid var(--line); background: var(--fill); color: var(--ink); cursor: pointer;
+  transition: transform .12s ease;
+}
+.pill:active { transform: scale(.96); }
+
+@media (prefers-reduced-motion: reduce) {
+  .hint, .end, .end.show { transition: none; }
+}

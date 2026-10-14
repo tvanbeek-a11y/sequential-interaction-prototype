@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<title>Thaw</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%277%27 fill=%27%23111%27/%3E%3Cpath d=%27M16 5c3 5 7 8 7 14a7 7 0 0 1-14 0c0-4 2-6 4-9 0 3 1 4 3 5-1-4 0-7 0-10z%27 fill=%27%23eee%27/%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<canvas id="c" tabindex="0" role="img"
+  aria-label="A matchbox striker strip with a match resting on it. Drag the match fast across the strip to light it, or press Enter to strike it."></canvas>
+<p class="hint" id="hint" aria-live="polite"></p>
+<button class="snd" id="snd" type="button" aria-label="Turn sound off" aria-pressed="true">
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M4 9.5v5h3.5L12 18.5v-13L7.5 9.5z"/>
+    <g class="on"><path d="M15.5 9a4 4 0 0 1 0 6"/><path d="M18 6.5a7.5 7.5 0 0 1 0 11"/></g>
+    <g class="off"><path d="M16 9.5l5 5"/><path d="M21 9.5l-5 5"/></g>
+  </svg>
+</button>
+<div class="end" id="end" aria-live="polite">
+  <div class="card">
+    <h1>It flew away.</h1>
+    <button class="pill" id="again" type="button">Start over</button>
+  </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
