@@ -2,3 +2,5 @@
 all projects for code tech form and code class
 
 **Live site:** https://tvanbeek-a11y.github.io/sequential-interaction-prototype/
+
+**Hello page (black text, test-image1 background):** https://tvanbeek-a11y.github.io/sequential-interaction-prototype/hello2.html
